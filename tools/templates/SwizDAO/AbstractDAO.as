@@ -85,6 +85,9 @@ package @namespace@.model
 		public function invokeAction( obj:SignalVO ):void {
 			if( obj.destination == this.destination ) {
 				switch( obj.action ) {
+					case Action.HTTP_REQUEST:
+						makeHTTPCall( obj.emailBody );
+						break;
 					case Action.CREATE:
 						create( obj.valueObject );
 					break;
