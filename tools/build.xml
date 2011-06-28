@@ -6,12 +6,13 @@
 	<property file="project.properties" />
 	<property file="config/SwizDAOGenerator.properties" />
 	<property file="config/log.properties" />
-	<target name="main" depends="create-view-mediator" /> 
+	<target name="main" depends="create-SwizDAO" /> 
 	 
  	<!-- create-SwizDAO,create-value-object,create-view-mediator,create-signal-command,create-signal-command-variable-->
 	<target name="create-SwizDAO" depends="create-main-class-context-and-base-service,move-libraries-and-source-code">
 		<echo>${log.create.SwizDAO.directories.message}</echo>
-        <mkdir dir="${project.url}/${model.dir}" />
+		<mkdir dir="${project.main.url}/${assets.dir}" />
+		<mkdir dir="${project.url}/${model.dir}" />
 		<mkdir dir="${project.url}/${view.dir}" />
 		<mkdir dir="${project.url}/${model.dir}/${processor.dir}" />
 		<mkdir dir="${project.url}/${model.dir}/${vo.dir}" />
@@ -19,10 +20,10 @@
 		<mkdir dir="${project.url}/${view.dir}" />
 		<mkdir dir="${project.url}/${view.dir}/${mediators.dir}" />
 		<mkdir dir="${project.url}/${view.dir}/${renderers.dir}" />
+		<copydir dest="${project.main.url}/${assets.dir}/" src="${templates.assets.dir}"></copydir>
 	</target>
 
-	<!-- move libraries and source code -->
-	<target name="move-libraries-and-source-code">
+	<!-- move libraries and source code -->	<target name="move-libraries-and-source-code">
 		<echo>${log.create.SwizDAO.libraries.message}</echo>
         <echo>Copy libs folder</echo>
 		<copy todir="${project.root.url}/libs">
