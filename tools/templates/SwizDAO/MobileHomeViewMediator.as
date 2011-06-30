@@ -118,6 +118,7 @@ package @namespace@.@view.dir@.mediators
 		 * Remove any listeners we've created.
 		 */
 		override protected function cleanup( event:Event ):void {
+			FlexGlobals.topLevelApplication.removeEventListener(ResizeEvent.RESIZE,applicationResizeHandler);
 			super.cleanup( event ); 		
 		} 
 	}
