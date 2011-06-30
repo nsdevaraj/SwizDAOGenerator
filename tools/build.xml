@@ -318,7 +318,7 @@
         		        <token key="upperCaseGesture" value="${upperCaseGesture}" />
         	           	<token key="lowerCaseGesture" value="${lowerCaseGesture}" />
 	            </replacetokens>
-	        </filterchain>
+	        </filterchain> 
 	    </copy>
 
 	    <copy file="${SwizDAO.templates.dir}/HomeSkinView.mxml"
