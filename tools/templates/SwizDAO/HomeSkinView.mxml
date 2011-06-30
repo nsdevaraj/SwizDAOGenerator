@@ -6,6 +6,10 @@
 	<fx:Metadata>
 		[HostComponent("@namespace@.@view.dir@.mediators.@gesture@ViewMediator")]
 	</fx:Metadata>  
+	<s:states>
+		<s:State name="landscape"/>
+		<s:State name="portrait"/>
+	</s:states>
 	<fx:Script>
 		<![CDATA[
 			/*

@@ -102,7 +102,7 @@
 	        </filterchain>
 	    </copy>
 		
-		<echo>Copy ${SwizDAO.templates.dir}/${projectType}SkinView.mxml</echo>
+		<echo>Copy ${SwizDAO.templates.dir}/MainSkinView.mxml</echo>
 				<copy file="${SwizDAO.templates.dir}/${projectType}SkinView.mxml"
 					  tofile="${project.url}/view/MainSkinView.mxml"
 					  overwrite="${overwrite.files}" >
@@ -113,7 +113,7 @@
 			        </filterchain>
 			    </copy>
 		
-	  <copy file="${SwizDAO.templates.dir}/HomeViewMediator.as"
+	  <copy file="${SwizDAO.templates.dir}/WebHomeViewMediator.as"
 		    	tofile="${project.url}/${view.dir}/mediators/MainViewMediator.as" overwrite="${true}" >
 		        <filterchain>
 		           <replacetokens>
@@ -303,7 +303,7 @@
 	    <convertToUpperCase property="upperCaseGesture" value="${gesture}" />
 	    <convertToLowerCase property="lowerCaseGesture" value="${gesture}" />
 
-	    <copy file="${SwizDAO.templates.dir}/HomeViewMediator.as"
+	    <copy file="${SwizDAO.templates.dir}/${projectType}HomeViewMediator.as"
 	    	tofile="${project.url}/${view.dir}/mediators/${gesture}ViewMediator.as" overwrite="${true}" >
 	        <filterchain>
 	           <replacetokens>
