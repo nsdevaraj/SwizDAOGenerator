@@ -6,7 +6,7 @@
 	<property file="project.properties" />
 	<property file="config/SwizDAOGenerator.properties" />
 	<property file="config/log.properties" />
-	<target name="main" depends="create-SwizDAO" /> 
+	<target name="main" depends="create-SwizDAO,create-mediator" /> 
 	 
  	<!-- create-SwizDAO,create-value-object,create-view-mediator,create-signal-command,create-signal-command-variable-->
 	<target name="create-SwizDAO" depends="create-main-class-context-and-base-service,move-libraries-and-source-code">
@@ -113,7 +113,7 @@
 			        </filterchain>
 			    </copy>
 		
-	  <copy file="${SwizDAO.templates.dir}/WebHomeViewMediator.as"
+	  <copy file="${SwizDAO.templates.dir}/MainViewMediator.as"
 		    	tofile="${project.url}/${view.dir}/mediators/MainViewMediator.as" overwrite="${true}" >
 		        <filterchain>
 		           <replacetokens>
@@ -131,6 +131,24 @@
 		        </filterchain>
 		    </copy>
 					 
+		<copy file="${SwizDAO.templates.dir}/AlertView.mxml"
+				    	tofile="${project.url}/${view.dir}/components/AlertView.mxml" overwrite="${true}" >
+				        <filterchain>
+				           <replacetokens> 
+									<token key="namespace" value="${namespace}" /> 
+				            </replacetokens>
+				        </filterchain>
+				    </copy>
+
+		 
+		<copy file="${SwizDAO.templates.dir}/ProgressSkinView.mxml"
+	    	tofile="${project.url}/${view.dir}/ProgressSkinView.mxml" overwrite="${true}" >
+	        <filterchain>
+	           <replacetokens> 
+						<token key="namespace" value="${namespace}" /> 
+	            </replacetokens>
+	        </filterchain>
+	    </copy>
 		<copy file="${SwizDAO.templates.dir}/SignalsCommand.as"
 				    	tofile="${project.url}/control/SignalsCommand.as" overwrite="${overwrite.files}" >
 				        <filterchain>
@@ -295,10 +313,7 @@
 						public static const ${upperCaseGesture}DAO 	:String='${lowerCaseGesture}DAO'; "
 			     /> 
 	</target>
-	
-	<!-- create view-mediator class -->
-	<target name="create-view-mediator" >
-		<echo>${log.view.mediator.message}</echo>
+	<target name="create-mediator" >
 
 	    <convertToUpperCase property="upperCaseGesture" value="${gesture}" />
 	    <convertToLowerCase property="lowerCaseGesture" value="${gesture}" />
@@ -320,6 +335,10 @@
 	            </replacetokens>
 	        </filterchain> 
 	    </copy>
+	</target>	
+	<!-- create view-mediator class -->
+	<target name="create-view-mediator" depends="create-mediator" >
+		<echo>${log.view.mediator.message}</echo>
 
 	    <copy file="${SwizDAO.templates.dir}/HomeSkinView.mxml"
 	    	tofile="${project.url}/${view.dir}/${gesture}SkinView.mxml" overwrite="${overwrite.files}" >

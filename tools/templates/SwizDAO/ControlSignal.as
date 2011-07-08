@@ -21,5 +21,8 @@ package @namespace@.signal
 	{
 		// add Signal 
 		public var changeStateSignal:Signal= new Signal(String);
+		public var hideAlertSignal:Signal = new Signal( uint );
+		public var progressStateSignal:Signal = new Signal( String );
+		public var showAlertSignal:Signal = new Signal( IViewMediator, String, String, int,Object );
 	}
 }
