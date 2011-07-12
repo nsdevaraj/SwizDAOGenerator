@@ -44,7 +44,6 @@ package @namespace@.@view.dir@.mediators
 		[Inject]
 		public var controlSignal:ControlSignal;
 		private var backKeyEventPreventDefaulted:Boolean;
-		protected var exitApplicationOnBackKey:Boolean;
 		private var menuKeyEventPreventDefaulted:Boolean;
 		
 		private var _homeState:String;
@@ -113,36 +112,37 @@ package @namespace@.@view.dir@.mediators
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, deviceKeyDownHandler, false, 0, true);
 			stage.addEventListener(KeyboardEvent.KEY_UP, deviceKeyUpHandler, false, 0, true);
 			super.setViewListeners(); 
-		}
-		private function deviceKeyUpHandler(event:KeyboardEvent):void
-		{
-			var key:uint = event.keyCode;
-			 
-			if (key == Keyboard.BACK && !backKeyEventPreventDefaulted && !exitApplicationOnBackKey)
-				backKeyUpHandler(event);
-			else if (key == Keyboard.MENU && !menuKeyEventPreventDefaulted)
-				menuKeyUpHandler(event);
-		}
+		} 
 		protected function backKeyUpHandler(event:KeyboardEvent):void
 		{
 		}
 		protected function menuKeyUpHandler(event:KeyboardEvent):void
 		{
+		} 
+		
+		private function deviceKeyUpHandler(event:KeyboardEvent):void
+		{
+			var key:uint = event.keyCode;
+			if (key == Keyboard.BACK && !backKeyEventPreventDefaulted)
+				backKeyUpHandler(event);
+			else if (key == Keyboard.MENU && !menuKeyEventPreventDefaulted)
+				menuKeyUpHandler(event);
 		}
+		
 		private function deviceKeyDownHandler(event:KeyboardEvent):void
 		{
 			var key:uint = event.keyCode;
 			if (key == Keyboard.BACK)
 			{
 				backKeyEventPreventDefaulted = event.isDefaultPrevented();
-				if (!exitApplicationOnBackKey)
-					event.preventDefault();
+				event.preventDefault();
 			}
 			else if (key == Keyboard.MENU)
 			{
 				menuKeyEventPreventDefaulted = event.isDefaultPrevented();
 			}
 		}
+		
 		
 		protected function applicationResizeHandler(event:ResizeEvent=null):void{
 			view.currentState =FlexGlobals.topLevelApplication.aspectRatio;
