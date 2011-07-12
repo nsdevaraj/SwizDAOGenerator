@@ -27,7 +27,9 @@ package @namespace@.@view.dir@.mediators
 	import com.adams.swizdao.views.components.NativeList;
 	import com.adams.swizdao.views.mediators.AbstractViewMediator;
 	
+	import flash.ui.Keyboard;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	
 	import mx.core.FlexGlobals;
@@ -41,6 +43,9 @@ package @namespace@.@view.dir@.mediators
 		
 		[Inject]
 		public var controlSignal:ControlSignal;
+		private var backKeyEventPreventDefaulted:Boolean;
+		protected var exitApplicationOnBackKey:Boolean;
+		private var menuKeyEventPreventDefaulted:Boolean;
 		
 		private var _homeState:String;
 		public function get homeState():String
@@ -105,7 +110,38 @@ package @namespace@.@view.dir@.mediators
 		 */
 		override protected function setViewListeners():void {
 			FlexGlobals.topLevelApplication.addEventListener(ResizeEvent.RESIZE,applicationResizeHandler, false, 0, true);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, deviceKeyDownHandler, false, 0, true);
+			stage.addEventListener(KeyboardEvent.KEY_UP, deviceKeyUpHandler, false, 0, true);
 			super.setViewListeners(); 
+		}
+		private function deviceKeyUpHandler(event:KeyboardEvent):void
+		{
+			var key:uint = event.keyCode;
+			 
+			if (key == Keyboard.BACK && !backKeyEventPreventDefaulted && !exitApplicationOnBackKey)
+				backKeyUpHandler(event);
+			else if (key == Keyboard.MENU && !menuKeyEventPreventDefaulted)
+				menuKeyUpHandler(event);
+		}
+		protected function backKeyUpHandler(event:KeyboardEvent):void
+		{
+		}
+		protected function menuKeyUpHandler(event:KeyboardEvent):void
+		{
+		}
+		private function deviceKeyDownHandler(event:KeyboardEvent):void
+		{
+			var key:uint = event.keyCode;
+			if (key == Keyboard.BACK)
+			{
+				backKeyEventPreventDefaulted = event.isDefaultPrevented();
+				if (!exitApplicationOnBackKey)
+					event.preventDefault();
+			}
+			else if (key == Keyboard.MENU)
+			{
+				menuKeyEventPreventDefaulted = event.isDefaultPrevented();
+			}
 		}
 		
 		protected function applicationResizeHandler(event:ResizeEvent=null):void{
@@ -118,6 +154,8 @@ package @namespace@.@view.dir@.mediators
 		 * Remove any listeners we've created.
 		 */
 		override protected function cleanup( event:Event ):void {
+			stage.removeEventListener(KeyboardEvent.KEY_DOWN, deviceKeyDownHandler);
+			stage.removeEventListener(KeyboardEvent.KEY_UP, deviceKeyUpHandler);
 			FlexGlobals.topLevelApplication.removeEventListener(ResizeEvent.RESIZE,applicationResizeHandler);
 			super.cleanup( event ); 		
 		} 
