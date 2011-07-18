@@ -24,7 +24,7 @@ package @namespace@.util
 		// todo: add key
 		 
 		// todo: add dao
-		
+		public static var fileSplitter:String =  '/';
 		public static const ALERT_YES:int = 0;
 		public static const ALERT_NO:int = 1;
 		public static const ALERT_OK:int = 2;
