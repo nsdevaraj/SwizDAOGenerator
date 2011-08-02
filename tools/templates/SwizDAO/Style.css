@@ -7,7 +7,13 @@
 	src: url("/assets/fonts/CALIBRI.TTF");
 	embedAsCFF: true;
 }  
-s|WindowedApplication,s|Application{
+@font-face
+{
+	fontFamily: CalibriMx;
+	src: url("/assets/fonts/CALIBRI.TTF");
+	embedAsCFF: false;
+} 
+s|Application{
 	chrome-color:#2d3239;
 	content-background-color:#313235;
 	color:#bdbdbd;
@@ -16,13 +22,12 @@ s|WindowedApplication,s|Application{
 	symbol-color:#ffff00;
 	focus-color:#efefef;
 } 
+s|TextArea{
+	fontFamily: CalibriMx;
+}
 s|DataGrid{
 	skin-class:ClassReference('assets.skins.DataGridSkin');
-	roll-over-color:#5a5a5a;
 	selection-color:#3f646b;
-	caret-color:#313235;
-	content-background-alpha:0;
-	border-color:#232323;
 }   
 s|FormItem{
 	skinClass : ClassReference("assets.skins.form.StackedFormItemViewSkin");
@@ -34,15 +39,7 @@ s|Label.header{
 }
 s|ButtonBar{
 	skin-class:ClassReference('assets.skins.ButtonBar.ButtonBarSkin');
-}
-s|Button.labelButton{
-	skin-class:ClassReference('assets.skins.MobileButtonSkin');
-	color:#0090d3;
-	overColor:#00a6ff;
-	disabledColor:#ffffff;
-	font-size:13;
-}
-
+} 
 s|TitleWindow{
 	skin-class:ClassReference('assets.skins.resize.ResizableDraggableTitleWindowSkin');
 }

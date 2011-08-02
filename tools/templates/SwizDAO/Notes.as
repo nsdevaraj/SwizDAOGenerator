@@ -31,6 +31,9 @@ package @namespace@.model.vo
 		{
 			_@lowerCaseGesture@Id = value;
 		}
-
+		
+		override public function fill(item:Object):void{ 
+			 
+		}
 	}
 }
