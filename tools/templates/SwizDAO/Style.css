@@ -23,7 +23,7 @@ s|Application{
 	focus-color:#efefef;
 } 
 s|TextArea{
-	fontFamily: CalibriMx;
+	fontFamily: Calibri;
 }
 s|DataGrid{
 	skin-class:ClassReference('assets.skins.DataGridSkin');

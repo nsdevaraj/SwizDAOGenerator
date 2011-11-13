@@ -80,7 +80,7 @@ package @namespace@.control
 		 */
 		[ControlSignal(type='changeStateSignal')]
 		public function changestateAction(state:String):void {
-			mainViewMediator.view.currentState = state;
+			Object(mainViewMediator.view).currentState = state;
 		}
 	}
 }

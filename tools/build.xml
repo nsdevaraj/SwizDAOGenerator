@@ -6,9 +6,9 @@
 	<property file="project.properties" />
 	<property file="config/SwizDAOGenerator.properties" />
 	<property file="config/log.properties" />
-	<target name="main" depends="create-value-object" /> 
+	<target name="main" depends="create-SwizDAO" /> 
 	 
- 	<!-- create-SwizDAO,create-mediator,create-value-object,create-view-mediator,create-signal-command,create-signal-command-variable-->
+ 	<!-- create-SwizDAO - Progress,create-mediator,create-value-object,create-view-mediator,create-signal-command,create-signal-command-variable-->
 	<target name="create-SwizDAO" depends="create-main-class-context-and-base-service,move-libraries-and-source-code,create-mediator">
 		<echo>${log.create.SwizDAO.directories.message}</echo>
 		<mkdir dir="${project.main.url}/${assets.dir}" />
