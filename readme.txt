@@ -13,7 +13,7 @@ In case you are running into errors:
 You need to ensure you copy the following plugins:
 Copy to [eclipsedirectory]/plugins
 
-    * BSF  http://jakarta.apache.org/site/downloads/downloads_bsf.cgi
+    * BSF  http://commons.apache.org/proper/commons-bsf/download_bsf.cgi
     * Rhino  http://www.mozilla.org/rhino/download.html
 
 After you add the jars you will need to do the following step:
